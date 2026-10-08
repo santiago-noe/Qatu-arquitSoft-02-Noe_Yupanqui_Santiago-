@@ -231,6 +231,8 @@ Se propone una **arquitectura en tres capas implementada como monolito modular**
 
 Si Qatu crece, los módulos de Reservas o Catálogo podrían separarse como servicios independientes.
 
+> El detalle de esta decisión está en el [registro de decisiones (ADR)](../analisis-de-sistema/07-desision-arquitectonica.md), el [estilo arquitectónico](./estilo-arquitectonico.md) y el [enfoque arquitectónico](./enfoque/enfoque-arquitectonico.md). El diagrama interactivo de esta sección está en [arquitectura-inicial.html](./arquitectura-inicial.html).
+
 ## Tecnologías propuestas por capa
 
 > Propuesta inicial, sujeta a validación del equipo.
