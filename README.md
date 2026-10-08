@@ -15,7 +15,7 @@ Qatu conecta a personas que necesitan una herramienta (taladro, amoladora, andam
 
 ## 🎯 Objetivo
 
-Diseñar la arquitectura de software inicial de Qatu, aplicando una arquitectura en tres capas a partir del análisis del sistema (actores, historias de usuario, requisitos, atributos de calidad, restricciones y drivers arquitectónicos).
+Diseñar la arquitectura de software de Qatu a partir del análisis del sistema (actores, historias de usuario, requisitos, atributos de calidad, restricciones y drivers arquitectónicos), registrando las decisiones arquitectónicas (ADR) y aplicando un estilo **cliente-servidor + monolito modular en capas** con **Clean Architecture** para organizar las dependencias internas.
 
 ## 🗂️ Estructura del repositorio
 
@@ -26,10 +26,33 @@ Diseñar la arquitectura de software inicial de Qatu, aplicando una arquitectura
 │   ├── 03-requisitos-funcionales.md
 │   ├── 04-atributos-de-calidad.md
 │   ├── 05-restricciones.md
-│   └── 06-driver-arquitectonicos.md
+│   ├── 06-driver-arquitectonicos.md
+│   └── 07-desision-arquitectonica.md
 └── arquitectura/
-    └── arquitectura-inicial.md
+    ├── arquitectura-inicial.md
+    ├── arquitectura-inicial.architecture.json
+    ├── arquitectura-inicial.html
+    ├── estilo-arquitectonico.md
+    ├── estructura-cliente-web-nextjs.architecture.json
+    ├── estructura-cliente-web-nextjs.html
+    ├── enfoque/
+    │   └── enfoque-arquitectonico.md
+    └── img/
+        ├── monolito-modular-en-capas.png
+        └── estructura-cliente-web-nextjs.png
 ```
+
+## 🧭 Recorrido sugerido
+
+| Paso | Documento                                                                                  | Pregunta que responde                                  |
+| ---- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------ |
+| 1-6  | [`analisis-de-sistema/`](./analisis-de-sistema/)                                           | ¿Qué debe hacer el sistema y qué lo condiciona?        |
+| 7    | [Decisiones arquitectónicas (ADR)](./analisis-de-sistema/07-desision-arquitectonica.md)    | ¿Qué decidimos y por qué?                              |
+| 8    | [Arquitectura inicial](./arquitectura/arquitectura-inicial.md)                             | ¿Cuáles son las capas y los módulos?                   |
+| 9    | [Estilo arquitectónico](./arquitectura/estilo-arquitectonico.md)                           | ¿Cómo estructuramos globalmente el sistema?            |
+| 10   | [Enfoque arquitectónico](./arquitectura/enfoque/enfoque-arquitectonico.md)                 | ¿Cómo organizamos las dependencias internas?           |
+
+Los archivos `.html` son los diagramas interactivos generados con archify a partir de sus `.architecture.json`; se abren directamente en el navegador.
 
 ---
 
