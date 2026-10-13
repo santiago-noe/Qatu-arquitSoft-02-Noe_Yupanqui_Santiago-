@@ -15,7 +15,7 @@ En Ayacucho, quien necesita una herramienta para una obra o reparación suele co
 | **Cliente**                     | Buscar herramientas y servicios, consultar información y disponibilidad, solicitar alquileres o contrataciones, pagar, consultar sus reservas y calificar. |
 | **Proveedor**                   | Publicar herramientas en alquiler y servicios de oficios, gestionar su disponibilidad, aceptar o rechazar solicitudes y consultar sus reservas.      |
 | **Administrador**               | Administrar y supervisar la plataforma, verificar proveedores y moderar publicaciones y reseñas.                                                     |
-| **Pasarela de pago**            | Procesar los pagos (anticipos o garantías) realizados por los clientes.                                                                              |
+| **Pasarela de pago**            | Procesar pagos del alquiler o anticipos; la garantía del MVP se registra documentalmente.                                                                              |
 | **Servicio de mensajería**      | Enviar notificaciones y mensajes (por ejemplo, WhatsApp o SMS) sobre el estado de las reservas.                                                      |
 | **Servicio de mapas**           | Proporcionar geolocalización para ubicar proveedores y herramientas cercanas.                                                                        |
 
@@ -49,3 +49,14 @@ Sistema externo que permite mostrar ubicaciones y calcular cercanía entre clien
 
 - **Actores principales:** Cliente, Proveedor y Administrador.
 - **Actores externos:** Pasarela de pago, Servicio de mensajería y Servicio de mapas.
+
+## Actores y condiciones añadidas para el MVP
+
+| Actor | Responsabilidad y límites |
+|---|---|
+| Visitante | Consulta publicaciones y búsqueda natural; se autentica para reservar/pagar |
+| Proveedor externo de IA | Interpreta texto; no accede a pagos, documentos privados ni operaciones de escritura |
+
+Una cuenta puede tener roles de cliente y proveedor. Administrador opera sobre todos los módulos con permisos auditados. Culqi es la pasarela candidata; Yape es un medio de pago integrado, no un módulo ni confirmación manual equivalente a pasarela. La garantía se registra documentalmente sin custodia propia en el MVP.
+
+[Vistas C4](../04-modelo-c4/README.md).
