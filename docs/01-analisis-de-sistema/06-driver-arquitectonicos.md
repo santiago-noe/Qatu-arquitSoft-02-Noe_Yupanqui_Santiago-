@@ -54,7 +54,7 @@ Las notificaciones y la geolocalización dependen de servicios externos, por lo 
 
 ### DA07 - Modularidad y mantenibilidad
 
-Los módulos (usuarios, proveedores, catálogo, reservas, reseñas) deben estar separados para evolucionar de forma independiente.
+Los seis módulos (usuarios, proveedores, catálogo, reservas, reseñas y búsqueda inteligente) deben estar separados para evolucionar de forma independiente.
 
 ### DA08 - Consistencia en las reservas
 
@@ -77,3 +77,14 @@ Los principales drivers de Qatu son:
 - **Usabilidad móvil.**
 
 Estos drivers sirven de base para justificar las decisiones arquitectónicas de la siguiente etapa.
+
+## Drivers añadidos y medidas
+
+| ID | Driver | Origen | Impacto arquitectónico | Escenarios |
+|---|---|---|---|---|
+| DA10 | Interpretar búsqueda natural con límites, respaldo y datos reales | RF16, RF17; AC07; RC17, RC19 | Puerto de IA de lectura, validador y presupuesto de consumo | EQ-02, EQ-05, EQ-10 |
+| DA11 | Operar y recuperar en VPS económico | AC09; RC14, RC16, RC19 | Persistencia, copias externas, health y medición de recursos | EQ-03, EQ-09 |
+| DA12 | Confirmar pagos sin duplicados ni estados ficticios | RF09, RF21, RF22; AC08; RC04 | Intento persistido, deduplicación, verificación y conciliación | EQ-08 |
+| DA13 | Documentar entrega/devolución y confianza | RF18-RF20; AC04; RC18 | Archivos privados, auditoría y estados de garantía independientes | EQ-04, EQ-09 |
+
+DA08 pertenece principalmente a integridad AC08; rendimiento no sustituye consistencia. DA04 mantiene integración obligatoria de pasarela y DA12 define su fiabilidad. [ADR](./07-desision-arquitectonica.md) · [Escenarios](./08-escenarios-atributos-calidad.md).

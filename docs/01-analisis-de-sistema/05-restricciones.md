@@ -11,7 +11,7 @@ Identificar las restricciones que condicionan las decisiones de diseño, desarro
 | **RC01** | **Aplicación web**                | El sistema debe desarrollarse como una aplicación web accesible desde el navegador, con diseño adaptable a celulares (mobile-first).                         |
 | **RC02** | **Control de versiones**          | El código fuente debe gestionarse con Git y mantenerse en un repositorio compartido en GitHub.                                                               |
 | **RC03** | **API REST**                      | La comunicación entre el frontend y los servicios del sistema debe realizarse mediante una API REST.                                                         |
-| **RC04** | **Pasarela de pago**              | El sistema debe integrarse con una pasarela de pago externa que soporte medios usados en el Perú para procesar pagos.                                        |
+| **RC04** | **Pasarela de pago**              | El MVP debe integrar una pasarela externa: Culqi candidata y Yape como medio habilitado. La confirmación se verifica en backend; sandbox obligatorio antes de producción.                                        |
 | **RC05** | **Servicio de mensajería**        | El sistema debe integrarse con un servicio externo de mensajería (WhatsApp o SMS) para enviar notificaciones.                                                |
 | **RC06** | **Servicio de mapas**             | El sistema debe integrarse con un servicio externo de mapas para la ubicación y cercanía de proveedores.                                                     |
 | **RC07** | **Base de datos relacional**      | La información de usuarios, publicaciones, reservas, pagos y reseñas debe almacenarse en un sistema gestor de base de datos relacional.                      |
@@ -92,3 +92,15 @@ Las restricciones condicionan principalmente:
 - Base de datos relacional.
 - Seguridad, control de acceso y protección de datos personales.
 - Modularidad, alcance definido y presupuesto limitado.
+
+## Restricciones adicionales para la entrega
+
+| ID | Restricción | Consecuencia |
+|---|---|---|
+| RC15 | Entrega a fines de noviembre de 2026; día exacto pendiente | Priorizar recorrido completo de herramientas/oficios |
+| RC16 | Despliegue inicial en un VPS con Docker Compose | Un backend, persistencia y copias externas; no prometer alta disponibilidad |
+| RC17 | IA limitada a búsqueda natural del MVP | Adaptador externo, cuota y deadline; no ejecutar pagos/reservas mediante IA |
+| RC18 | Sin custodia propia de garantías | Registrar monto/condiciones/evidencias; pago del alquiler separado |
+| RC19 | Presupuesto de VPS e IA pendiente de fijar | Medir costo por consulta, límites mensuales y carga antes de dimensionar |
+
+Compraventa, ERP, courier, custodia avanzada, recomendador personalizado y app móvil nativa quedan como evolución. RC04 sigue siendo obligatorio: no sustituir pasarela por comprobante manual. RC13 conserva la herramienta de desarrollo documentada, sin introducirla como dependencia del producto desplegado.

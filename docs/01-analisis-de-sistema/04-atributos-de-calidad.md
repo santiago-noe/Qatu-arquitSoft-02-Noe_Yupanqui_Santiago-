@@ -55,3 +55,13 @@ Gran parte de los usuarios accederá desde el celular. La interfaz debe ser simp
 - **Seguridad:** protección de datos personales, cuentas y pagos.
 - **Mantenibilidad:** facilidad para modificar y evolucionar el sistema.
 - **Usabilidad:** uso sencillo desde celular y con conexiones lentas.
+
+## Atributos adicionales y escenarios medibles
+
+| ID | Atributo | Aplicación | Escenarios |
+|---|---|---|---|
+| AC07 | Resiliencia | IA/terceros fallan de forma controlada; pagos inciertos se concilian | EQ-02, EQ-08, EQ-10 |
+| AC08 | Integridad | Sin solapamientos y sin efectos de pago duplicados | EQ-07, EQ-08 |
+| AC09 | Recuperabilidad | Restaurar datos/archivos desde copias externas y conciliar pagos | EQ-09 |
+
+AC01 se evalúa en EQ-01/EQ-10; AC02 en EQ-02/EQ-09; AC03 en EQ-03; AC04 en EQ-04; AC05 en EQ-05; AC06 en EQ-06. Las cifras están en [08 - Escenarios](./08-escenarios-atributos-calidad.md) y son metas pendientes de validar, no resultados.
