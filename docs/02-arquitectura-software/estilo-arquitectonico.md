@@ -1,5 +1,15 @@
 # Estilo arquitectónico de Qatu
 
+## Diagrama del estilo arquitectónico
+
+Vista de ejecución del cliente-servidor y el monolito modular en capas. Los módulos se despliegan juntos; las llamadas a infraestructura se realizan mediante puertos, sin invertir la regla de imports.
+
+![Diagrama de diagrama del estilo arquitectónico de Qatu](./diagramas/png/estilo-arquitectonico-qatu.png)
+
+[PNG](./diagramas/png/estilo-arquitectonico-qatu.png) · [SVG vectorial](./diagramas/svg/estilo-arquitectonico-qatu.svg) · [Editable en diagrams.net](./diagramas/fuentes/estilo-arquitectonico-qatu.drawio).
+
+Para editar: diagrams.net → Archivo → Abrir desde → Dispositivo. Seleccionar el archivo .drawio. Las fuentes JSON están en diagramas/fuentes y los renderizadores en diagramas/scripts.
+
 ## Selección
 
 Cliente-servidor + monolito modular. Frontend Next.js y API NestJS se despliegan como aplicaciones separadas; los seis módulos backend se publican juntos. Capas son organización lógica y contenedores C4 son aplicaciones/almacenes, no equivalentes a módulos.

@@ -1,5 +1,11 @@
 # Nivel 3 - Componentes de la API Qatu
 
+## Vista gráfica
+
+![Diagrama de componentes de Qatu](../02-arquitectura-software/diagramas/png/componentes-qatu.png)
+
+[Editar en diagrams.net](../02-arquitectura-software/diagramas/fuentes/componentes-qatu.drawio) · [Descripción de componentes](../02-arquitectura-software/componentes-arquitectonicos.md).
+
 ## Objetivo
 
 Detallar exclusivamente el contenedor API del nivel 2. Los seis módulos se ejecutan juntos; componentes técnicos transversales no se cuentan como módulos de negocio adicionales.

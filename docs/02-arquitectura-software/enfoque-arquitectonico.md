@@ -1,5 +1,15 @@
 # Enfoque arquitectónico: Clean Architecture en Qatu
 
+## Diagrama del enfoque Clean Architecture
+
+Las flechas continuas muestran dependencias de código hacia el dominio; las discontinuas indican configuración e inyección desde la composición. Los adapters no son dependencias del dominio.
+
+![Diagrama de diagrama del enfoque clean architecture de Qatu](./diagramas/png/enfoque-arquitectonico-qatu.png)
+
+[PNG](./diagramas/png/enfoque-arquitectonico-qatu.png) · [SVG vectorial](./diagramas/svg/enfoque-arquitectonico-qatu.svg) · [Editable en diagrams.net](./diagramas/fuentes/enfoque-arquitectonico-qatu.drawio).
+
+Para editar: diagrams.net → Archivo → Abrir desde → Dispositivo. Seleccionar el archivo .drawio. Las fuentes JSON están en diagramas/fuentes y los renderizadores en diagramas/scripts.
+
 ## Objetivo
 
 Separar dominio y aplicación de NestJS, Next.js, PostgreSQL, Culqi y proveedor de IA. Se aplica dentro de cada módulo backend; el frontend también separa presentación, casos de uso de interfaz, contratos y adapters HTTP.

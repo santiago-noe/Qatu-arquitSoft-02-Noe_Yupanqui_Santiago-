@@ -1,8 +1,18 @@
 # Arquitectura inicial de Qatu
 
+## Diagrama general de arquitectura
+
+Vista del sistema completo: actores, presentación, seis módulos, persistencia e integraciones.
+
+![Diagrama de diagrama general de arquitectura de Qatu](./diagramas/png/arquitectura-inicial-qatu.png)
+
+[PNG](./diagramas/png/arquitectura-inicial-qatu.png) · [SVG vectorial](./diagramas/svg/arquitectura-inicial-qatu.svg) · [Editable en diagrams.net](./diagramas/fuentes/arquitectura-inicial-qatu.drawio).
+
+Para editar: diagrams.net → Archivo → Abrir desde → Dispositivo. Seleccionar el archivo .drawio. Las fuentes JSON están en diagramas/fuentes y los renderizadores en diagramas/scripts.
+
 ## Alcance y estado
 
-MVP de alquiler de herramientas y contratación de oficios en Ayacucho, con pasarela de pago y búsqueda natural. Diseño actualizado a seis módulos; código pendiente de implementación. La propuesta de ecosistema con compraventa es evolución futura.
+MVP de alquiler de herramientas y contratación de oficios en Ayacucho, con pasarela de pago y búsqueda natural. Diseño actualizado a seis módulos; backend e integraciones pendientes de implementación. El prototipo web 001, disponible localmente en frontend/, ya permite explorar datos sintéticos. La propuesta de ecosistema con compraventa es evolución futura.
 
 ## Estructura general
 
@@ -67,6 +77,6 @@ Node.js 20 ya está fuera de soporte; elegir y fijar versión LTS soportada ante
 
 ## Vistas detalladas
 
-[C4 completo](../04-modelo-c4/README.md) · [Componentes](./componentes-arquitectonicos.md) · [Estilo](./estilo-arquitectonico.md) · [Enfoque](./enfoque-arquitectonico.md) · [ADR](../01-analisis-de-sistema/07-desision-arquitectonica.md).
+[C4 completo](../../README.md#modelo-c4) · [Componentes](./componentes-arquitectonicos.md) · [Estilo](./estilo-arquitectonico.md) · [Enfoque](./enfoque-arquitectonico.md) · [ADR](../01-analisis-de-sistema/07-desision-arquitectonica.md).
 
-Los HTML/JSON/PNG previos de archify representan el diseño anterior de cinco módulos y se conservan como historial; las vistas Mermaid y C4 enlazadas son la versión actual para la entrega.
+Los HTML y .architecture.json de Archify, junto con las imágenes anteriores, se conservan en [historico](../../README.md#historico-de-arquitectura). Los nuevos diagramas con sufijo -qatu, las vistas Mermaid y C4 enlazadas corresponden a la versión actual.
