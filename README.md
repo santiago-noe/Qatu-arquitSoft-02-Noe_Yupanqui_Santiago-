@@ -4,38 +4,116 @@ Proyecto final de Arquitectura de Software (IS-488), Noe Yupanqui Santiago. Entr
 
 ## Alcance
 
-MVP web para publicar, buscar, solicitar, pagar y completar alquileres de herramientas o servicios de oficios. Incluye búsqueda en lenguaje natural, confianza y evidencias. Compraventa y otras categorías del Word son visión futura.
+MVP web para publicar, buscar, solicitar, pagar y completar alquileres de herramientas o servicios de oficios en Ayacucho. Incluye búsqueda en lenguaje natural, confianza y evidencias. Compraventa y otras categorías de la propuesta quedan como evolución futura.
 
-Backend: monolito modular de seis módulos con Clean Architecture. Web Next.js; API NestJS; PostgreSQL; Culqi como pasarela candidata con Yape como medio habilitado; VPS con Docker Compose. Integración real, código y pruebas funcionales pendientes.
+Web Next.js/React/TypeScript; API NestJS/TypeScript como monolito modular; PostgreSQL/PostGIS; pasarela Culqi candidata con Yape como medio habilitado; despliegue inicial VPS con Docker Compose.
 
-## Estructura y lectura
+Estado: prototipo web 001 implementado localmente con datos sintéticos. Backend, persistencia e integraciones reales pendientes. Las metas de calidad son objetivos por verificar, no resultados demostrados.
+
+## Documentación
+
+Este README es el índice global de las secciones 01–04. Los documentos se adaptan al dominio Qatu tomando como referencia Marketplace; no se incorporan ERP, carrito de compras ni courier al MVP.
 
 ```text
 Qatu/
-└── docs/
-    ├── 01-analisis-de-sistema/    Documentos 01 a 08 vigentes
-    ├── 02-arquitectura-software/  Arquitectura, componentes, estilo y enfoque
-    ├── 03-diseño-de-software/
-    │   ├── diseño-interno/       Principios, patrones y módulos
-    │   ├── diseño-externo/       Contratos REST
-    │   ├── modelo-de-datos.md
-    │   └── validacion-del-diseno.md
-    └── 04-modelo-c4/             Contexto, contenedores, componentes, código y VPS
+├── README.md
+├── docs/
+│   ├── 01-analisis-de-sistema/
+│   ├── 02-arquitectura-software/
+│   │   ├── diagramas/{png,svg,fuentes,scripts}/
+│   │   └── historico/{archify,img}/
+│   ├── 03-diseño-de-software/
+│   │   ├── diseño-interno/
+│   │   └── diseño-externo/
+│   └── 04-modelo-c4/
+│       └── diagramas/
+├── specs/          Especificaciones SDD de trabajo local
+└── frontend/       Prototipo web de trabajo local
 ```
 
-El análisis se encuentra en docs/01-analisis-de-sistema y la arquitectura en docs/02-arquitectura-software. La estructura numerada sigue el orden de Marketplace-arquitSoft-02/docs. El contenido se adapta a Qatu; ERP, carrito y courier no se copian al MVP.
+## Analisis del sistema
 
-1. [Análisis completo](./docs/01-analisis-de-sistema/README.md).
-2. [Escenarios de atributos de calidad](./docs/01-analisis-de-sistema/08-escenarios-atributos-calidad.md).
-3. [Arquitectura y decisiones](./docs/02-arquitectura-software/README.md).
-4. [Diseño de software](./docs/03-diseño-de-software/README.md).
-5. [Modelos C4](./docs/04-modelo-c4/README.md).
-6. [Validación pendiente](./docs/03-diseño-de-software/validacion-del-diseno.md).
+1. [Actores](./docs/01-analisis-de-sistema/01-actores.md).
+2. [Historias de usuario](./docs/01-analisis-de-sistema/02-historias-del-usuario.md).
+3. [Requisitos funcionales](./docs/01-analisis-de-sistema/03-requisitos-funcionales.md).
+4. [Atributos de calidad](./docs/01-analisis-de-sistema/04-atributos-de-calidad.md).
+5. [Restricciones](./docs/01-analisis-de-sistema/05-restricciones.md).
+6. [Drivers arquitectónicos](./docs/01-analisis-de-sistema/06-driver-arquitectonicos.md).
+7. [Decisiones arquitectónicas](./docs/01-analisis-de-sistema/07-desision-arquitectonica.md).
+8. [Escenarios de atributos de calidad](./docs/01-analisis-de-sistema/08-escenarios-atributos-calidad.md).
 
-## Módulos
+## Arquitectura de software
 
-Usuarios y acceso; Proveedores; Catálogo; Reservas y contratación (incluye pagos); Reputación y confianza (resenas); Búsqueda inteligente (busqueda). Administración es una interfaz por permisos.
+1. [Arquitectura inicial](./docs/02-arquitectura-software/arquitectura-inicial.md): actores, aplicaciones, módulos e integraciones.
+2. [Estilo arquitectónico](./docs/02-arquitectura-software/estilo-arquitectonico.md): cliente-servidor y monolito modular.
+3. [Enfoque arquitectónico](./docs/02-arquitectura-software/enfoque-arquitectonico.md): Clean Architecture y dependencias.
+4. [Componentes arquitectónicos](./docs/02-arquitectura-software/componentes-arquitectonicos.md): responsabilidades y contratos.
 
-## Estado de diagramas
+Los seis módulos son Usuarios, Proveedores, Catálogo, Reservas, Reputación/confianza (resenas) y Búsqueda inteligente (busqueda). Pagos y calendario pertenecen a Reservas. Administración es una interfaz con permisos; mensajería, mapas y archivos son soporte técnico.
 
-Los diagramas vigentes están incluidos en Markdown como Mermaid y sus fuentes editables .mmd en [diagramas](./docs/04-modelo-c4/diagramas/README.md). No necesitan imágenes inexistentes. Los HTML/JSON/PNG antiguos de archify se conservan como historial del diseño anterior de cinco módulos; no representan la versión actual.
+### Diagramas de arquitectura
+
+| Vista | Imagen | Vector | Editable |
+|---|---|---|---|
+| Arquitectura inicial | [PNG](./docs/02-arquitectura-software/diagramas/png/arquitectura-inicial-qatu.png) | [SVG](./docs/02-arquitectura-software/diagramas/svg/arquitectura-inicial-qatu.svg) | [drawio](./docs/02-arquitectura-software/diagramas/fuentes/arquitectura-inicial-qatu.drawio) |
+| Enfoque arquitectónico | [PNG](./docs/02-arquitectura-software/diagramas/png/enfoque-arquitectonico-qatu.png) | [SVG](./docs/02-arquitectura-software/diagramas/svg/enfoque-arquitectonico-qatu.svg) | [drawio](./docs/02-arquitectura-software/diagramas/fuentes/enfoque-arquitectonico-qatu.drawio) |
+| Estilo arquitectónico | [PNG](./docs/02-arquitectura-software/diagramas/png/estilo-arquitectonico-qatu.png) | [SVG](./docs/02-arquitectura-software/diagramas/svg/estilo-arquitectonico-qatu.svg) | [drawio](./docs/02-arquitectura-software/diagramas/fuentes/estilo-arquitectonico-qatu.drawio) |
+| Componentes C4 nivel 3 | [PNG](./docs/02-arquitectura-software/diagramas/png/componentes-qatu.png) | [SVG](./docs/02-arquitectura-software/diagramas/svg/componentes-qatu.svg) | [drawio](./docs/02-arquitectura-software/diagramas/fuentes/componentes-qatu.drawio) |
+
+Abrir drawio en diagrams.net: Archivo → Abrir desde → Dispositivo. PNG sirve para informes; SVG conserva nitidez. Las fuentes JSON contienen posiciones y textos de los renderizadores. Azul oscuro: personas; azul medio: aplicaciones/almacenes; azul claro: capas/módulos; gris: sistemas externos. Las flechas representan imports en el enfoque y llamadas en las vistas general/de estilo.
+
+Para regenerar PNG desde la raíz de Qatu, con PowerShell en Windows:
+
+```powershell
+& "./docs/02-arquitectura-software/diagramas/scripts/render-arquitectura.ps1" -GraphDirectory "./docs/02-arquitectura-software/diagramas/fuentes" -ImageDirectory "./docs/02-arquitectura-software/diagramas/png" -VectorDirectory "./docs/02-arquitectura-software/diagramas/svg"
+
+& "./docs/02-arquitectura-software/diagramas/scripts/render-componentes.ps1" -GraphPath "./docs/02-arquitectura-software/diagramas/fuentes/componentes-qatu.json" -OutputPath "./docs/02-arquitectura-software/diagramas/png/componentes-qatu.png"
+```
+
+Los renderizadores generan PNG desde JSON. Mantener SVG y drawio sincronizados cuando se edite una vista.
+
+### Historico de arquitectura
+
+Los archivos de historico son versiones anteriores; pueden mostrar cinco módulos y no sustituyen los documentos actuales.
+
+- [Arquitectura anterior Archify](./docs/02-arquitectura-software/historico/archify/arquitectura-inicial.html) y [fuente JSON](./docs/02-arquitectura-software/historico/archify/arquitectura-inicial.architecture.json).
+- [Cliente Next.js anterior](./docs/02-arquitectura-software/historico/archify/estructura-cliente-web-nextjs.html) y [fuente JSON](./docs/02-arquitectura-software/historico/archify/estructura-cliente-web-nextjs.architecture.json).
+- [Monolito en capas anterior](./docs/02-arquitectura-software/historico/img/monolito-modular-en-capas.png).
+- [Estructura del cliente anterior](./docs/02-arquitectura-software/historico/img/estructura-cliente-web-nextjs.png).
+
+## Diseno de software
+
+- [Principios SOLID](./docs/03-diseño-de-software/diseño-interno/principios-de-diseño.md).
+- [Patrones de diseño](./docs/03-diseño-de-software/diseño-interno/patrones-de-diseño.md).
+- [Diseño interno de los seis módulos](./docs/03-diseño-de-software/diseño-interno/diseño-interno-de-modulos.md).
+- [Contratos REST](./docs/03-diseño-de-software/diseño-externo/contratos-api.md).
+- [Modelo de datos](./docs/03-diseño-de-software/modelo-de-datos.md).
+- [Validación del diseño](./docs/03-diseño-de-software/validacion-del-diseno.md).
+
+## Modelo C4
+
+| Nivel | Pregunta | Documento |
+|---|---|---|
+| 1 | ¿Quién usa Qatu y con qué sistemas se integra? | [Contexto](./docs/04-modelo-c4/Nivel1-DiagramadeContextodelSistema.md) |
+| 2 | ¿Qué aplicaciones y almacenes forman Qatu? | [Contenedores](./docs/04-modelo-c4/Nivel2-DiagramadeContenedores.md) |
+| 3 | ¿Cómo se organiza la API? | [Componentes](./docs/04-modelo-c4/Nivel3-Diagrama-de-Componentes.md) |
+| 4 | ¿Cómo colaboran las clases y puertos? | [Código](./docs/04-modelo-c4/Nivel4-DiagramadeCodigo.md) |
+| Complementaria | ¿Dónde se ejecuta? | [Despliegue VPS](./docs/04-modelo-c4/despliegue-vps.md) |
+
+Mermaid representa las vistas estructurales y UML el diseño de código. Secuencias y despliegue son vistas complementarias. Los contenedores C4 son unidades de ejecución/almacenamiento, no necesariamente contenedores Docker. Los componentes de la API comparten proceso.
+
+Las fuentes editables .mmd están en docs/04-modelo-c4/diagramas y corresponden a los bloques Mermaid de los documentos. Editar el Markdown y sincronizar su archivo .mmd. Referencia: [C4](https://c4model.com/diagrams).
+
+## Desarrollo local
+
+Las especificaciones están en specs/; constitución y herramientas SDD en .specify/ y .claude/skills/. El prototipo está en frontend/. Estos recursos complementan los documentos 01–04.
+
+Desde la raíz del repositorio, con Node.js 22 o superior:
+
+```powershell
+cd frontend
+npm ci
+npm run dev
+```
+
+Abrir http://127.0.0.1:3000. El prototipo permite explorar datos sintéticos; las integraciones y la aceptación completa siguen pendientes.
