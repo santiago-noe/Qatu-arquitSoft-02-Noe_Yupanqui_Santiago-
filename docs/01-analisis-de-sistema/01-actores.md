@@ -59,4 +59,4 @@ Sistema externo que permite mostrar ubicaciones y calcular cercanía entre clien
 
 Una cuenta puede tener roles de cliente y proveedor. Administrador opera sobre todos los módulos con permisos auditados. Culqi es la pasarela candidata; Yape es un medio de pago integrado, no un módulo ni confirmación manual equivalente a pasarela. La garantía se registra documentalmente sin custodia propia en el MVP.
 
-[Vistas C4](../04-modelo-c4/README.md).
+[Vistas C4](../../README.md#modelo-c4).
