@@ -4,24 +4,35 @@
 
 Vista lógica propuesta para alquiler de herramientas y servicios. No es una migración ejecutada. Conserva propiedad de datos por módulo aunque comparta PostgreSQL.
 
+## Diagrama entidad-relación
+
+![Modelo de datos de Qatu](../04-modelo-c4/diagramas/modelo-de-datos.svg)
+
+[Ver SVG](../04-modelo-c4/diagramas/modelo-de-datos.svg) · [Fuente Mermaid editable](../04-modelo-c4/diagramas/modelo-de-datos-1.mmd).
+
+<details>
+<summary>Ver código Mermaid</summary>
+
 ```mermaid
 erDiagram
-    USUARIO ||--o{ ROL_USUARIO : tiene
-    USUARIO ||--o| PROVEEDOR : ofrece
-    PROVEEDOR ||--o{ PUBLICACION : publica
-    PUBLICACION ||--o{ RECURSO : describe
-    USUARIO ||--o{ RESERVA : solicita
-    PUBLICACION ||--o{ RESERVA : origina
-    RECURSO ||--o{ BLOQUEO : calendario
-    RESERVA ||--o| BLOQUEO : activa
-    RESERVA ||--o{ INTENTO_PAGO : registra
-    INTENTO_PAGO ||--o{ EVENTO_PASARELA : verifica
-    RESERVA ||--o{ EVIDENCIA : documenta
-    RESERVA ||--o| GARANTIA_DOCUMENTADA : acuerda
-    RESERVA ||--o{ INCIDENCIA : reporta
-    RESERVA ||--o| RESENA : permite
-    RESERVA ||--o{ OUTBOX_EVENTO : emite
+    USUARIO ||--o{ ROL_USUARIO : "tiene"
+    USUARIO ||--o| PROVEEDOR : "ofrece"
+    PROVEEDOR ||--o{ PUBLICACION : "publica"
+    PUBLICACION ||--o{ RECURSO : "describe"
+    USUARIO ||--o{ RESERVA : "solicita"
+    PUBLICACION ||--o{ RESERVA : "origina"
+    RECURSO ||--o{ BLOQUEO : "calendario"
+    RESERVA ||--o| BLOQUEO : "activa"
+    RESERVA ||--o{ INTENTO_PAGO : "registra"
+    INTENTO_PAGO ||--o{ EVENTO_PASARELA : "verifica"
+    RESERVA ||--o{ EVIDENCIA : "documenta"
+    RESERVA ||--o| GARANTIA_DOCUMENTADA : "acuerda"
+    RESERVA ||--o{ INCIDENCIA : "reporta"
+    RESERVA ||--o| RESENA : "permite"
+    RESERVA ||--o{ OUTBOX_EVENTO : "emite"
 ```
+
+</details>
 
 ## Datos e invariantes
 
