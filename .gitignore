@@ -6,3 +6,14 @@ node_modules/
 .agents/
 .claude/skills/
 skills-lock.json
+
+# Next.js y validación local
+frontend/.next/
+frontend/out/
+frontend/tsconfig.tsbuildinfo
+frontend/test-results/
+frontend/playwright-report/
+.env.*
+!.env.example
+backend/dist/
+.local-postgres/
