@@ -40,7 +40,9 @@ Idempotency-Key se asocia a usuario, reserva y operación. Reutilizar la clave c
 
 Errores contienen code, mensaje y correlationId sin stack ni secretos. 400 entrada; 401 sin autenticación; 403 sin permiso; 404 inexistente/no visible; 409 conflicto; 429 límite; 202 operación pendiente. Paginación: límite inicial 20, máximo 50; filtros con listas permitidas.
 
-Autenticación con tokens de corta duración y almacenamiento protegido. Si se usa cookie HttpOnly, definir SameSite, Secure y protección CSRF para escrituras; si se usa header, no almacenar tokens en repositorios ni exponerlos en logs. La decisión final se registra antes de implementar.
+Autenticación web concretada en D01 (2026-10-19): JWT HS256 de 15 minutos en cookie qatu_sesion HttpOnly/SameSite=Strict/Path=/api/v1 y Secure en producción. Sesión revocable en PostgreSQL y comprobación de cuenta activa por acción privada. Escrituras exigen Origin igual a APP_ORIGIN y Content-Type application/json; se rechazan solicitudes cross-site. Sin renovación automática ni token en JSON/localStorage. Next.js sirve como proxy al mismo origen. Ver [decisión y límites de intentos](../../../specs/002-usuarios-acceso/research.md).
+
+Usuarios US1/US2: POST /auth/registro recibe {email,password,nombre} y responde 201 con {usuario,expiraEn}; POST /auth/login recibe {email,password} y responde 200 con el mismo formato. GET /usuarios/me devuelve {id,email,nombre,estado,roles}; PATCH /usuarios/me acepta solo {nombre}. POST /auth/logout con JSON {} revoca sesión y responde 204 limpiando cookie. Campos adicionales rechazados; registro solo concede cliente. Nombre 2–100 caracteres, email normalizado hasta 254, contraseña 12–128. Administración de usuarios y OpenAPI estructurado pendientes. [Contrato concreto](../../../specs/002-usuarios-acceso/contracts/api.md).
 
 ## Prueba de integración Culqi/Yape
 
