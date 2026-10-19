@@ -8,7 +8,7 @@ MVP web para publicar, buscar, solicitar, pagar y completar alquileres de herram
 
 Web Next.js/React/TypeScript; API NestJS/TypeScript como monolito modular; PostgreSQL/PostGIS; pasarela Culqi candidata con Yape como medio habilitado; despliegue inicial VPS con Docker Compose.
 
-Estado (2026-10-19): prototipo web 001 con catálogo sintético y Usuarios 002 US1/US2 implementadas con API NestJS y persistencia PostgreSQL. Registro, login, perfil y logout disponibles localmente. Administración US3 e integraciones de catálogo/reservas/pagos pendientes. Las metas de calidad completas siguen por verificar; evidencia del incremento en specs/002-usuarios-acceso/quickstart.md.
+Estado (2026-10-19): prototipo web 001 con catálogo sintético y Usuarios 002 US1/US2/US3 implementadas con API NestJS y persistencia PostgreSQL. Registro, login, perfil, logout y administración auditada disponibles localmente. Administrador creado por CLI sobre cuenta nueva; /admin/usuarios permite buscar cuentas, cambiar acceso con motivo y revisar auditoría. Catálogo/reservas/pagos e integración de proveedores pendientes. Las metas de calidad globales siguen por verificar; evidencia en specs/002-usuarios-acceso/quickstart.md.
 
 ## Documentación
 

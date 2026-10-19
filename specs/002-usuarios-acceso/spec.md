@@ -1,6 +1,6 @@
 # 002 — Usuarios y acceso
 
-**Estado:** US1/US2 implementadas localmente; validación en quickstart. US3 y aceptación completa pendientes. **Actualizado:** 2026-10-19.
+**Estado:** US1/US2/US3 implementadas localmente; validación y límites en quickstart. Aceptación global de calidad y revisión humana pendientes. **Actualizado:** 2026-10-19.
 **Módulo técnico:** usuarios. **Historias:** HU11, HU13.
 
 ## Objetivo y alcance

@@ -34,4 +34,6 @@ Nombres físicos: usuarios(id, email_normalizado, password_hash, nombre, estado,
 
 Detalle operativo D01: sesiones_usuario(id, usuario_id, expira_en, revocada) con índice de usuario; limites_acceso(clave, intentos, hasta) con incremento atómico por ventana de 15 minutos. La clave por email contiene SHA-256; nunca la contraseña. migraciones registra versiones aplicadas con bloqueo transaccional. Hay SQL de rollback manual en 001-usuarios.down.sql.
 
-La limpieza periódica de filas expiradas sigue pendiente antes de operación sostenida. No se almacenan JWT completos ni refresh tokens. Las tablas de auditoría/cambios administrativos se concretarán con US3.
+Migración 002-administracion: auditoria_usuarios(id UUID, actor_id FK nullable, usuario_id FK, accion, estado_anterior nullable, estado_nuevo, motivo, creado_en timestamptz). Acciones crear_admin y cambiar_estado; CHECK obliga actor/estados coherentes y motivo trim de 10–500 caracteres. Índice usuario/fecha/id para paginación. No guarda contraseña, hash ni token. Actor null solo para aprovisionamiento CLI.
+
+La limpieza periódica de filas expiradas sigue pendiente antes de operación sostenida. No se almacenan JWT completos ni refresh tokens. El rol admin se crea solo por CLI sobre cuenta nueva; no se modifica desde HTTP. Auditoría de cambios exitosos insertada en la misma transacción que estado/revocación; sin endpoints para modificarla o borrarla. El script migrate aplica 001 y 002 en orden bajo el bloqueo/historial ya existentes; downgrade de 002 es manual y elimina auditoría.

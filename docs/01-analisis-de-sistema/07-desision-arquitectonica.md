@@ -66,7 +66,7 @@ Diseño propuesto para el MVP académico de noviembre de 2026; implementación y
 ## ADR-007 - Autenticación, roles y propiedad
 
 - **Contexto:** Datos privados y cuentas con varios roles.
-- **Decisión:** JWT corto, HTTPS, hash seguro, roles múltiples y autorización por propietario; auditar cambios. D01 concretada el 2026-10-19: cookie HttpOnly/Strict/Secure en producción, JWT 15 min, sesión revocable en PostgreSQL y validación de origen en escrituras; sin renovación automática. [Detalle técnico y límites](../../specs/002-usuarios-acceso/research.md). Auditoría administrativa pendiente de US3.
+- **Decisión:** JWT corto, HTTPS, hash seguro, roles múltiples y autorización por propietario; auditar cambios. D01 concretada el 2026-10-19: cookie HttpOnly/Strict/Secure en producción, JWT 15 min, sesión revocable en PostgreSQL y validación de origen en escrituras; sin renovación automática. US3 registra actor/cuenta/estados/motivo/fecha en transacción junto a revocación; cuentas admin protegidas y aprovisionamiento por CLI sobre cuenta nueva. [Detalle técnico y límites](../../specs/002-usuarios-acceso/research.md).
 - **Alternativa descartada:** Confiar solo en rol recibido del frontend.
 - **Consecuencias:** No exposición de evidencias o reservas ajenas; pruebas EQ-04. Cookie requiere protección CSRF.
 

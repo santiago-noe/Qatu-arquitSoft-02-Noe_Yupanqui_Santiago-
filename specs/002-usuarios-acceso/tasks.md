@@ -1,11 +1,11 @@
 # Tareas — Usuarios y acceso
 
-Estado (2026-10-19): US1/US2 implementadas y verificadas con PostgreSQL real y Chrome. US3, OpenAPI estructurado y aceptación completa de 002 pendientes.
+Estado (2026-10-19): US1/US2/US3 implementadas y verificadas con PostgreSQL real y Chrome. Tareas de implementación local completas; OpenAPI estructurado, aceptación global de EQ-04/EQ-05 y revisión humana siguen pendientes en checklist. Las guardas de autorización viven en los casos de uso y se repiten dentro de la transacción administrativa; no se confía en ocultar controles web.
 
 ## Fase 1 — Preparación
 
 - [x] T001 Resolver las decisiones afectadas en specs/002-usuarios-acceso/research.md; sincronizar ADR/contratos si cambian.
-- [ ] T002 Completar DTO/estados y matriz de permisos en specs/002-usuarios-acceso/contracts/api.md.
+- [x] T002 Completar DTO/estados y matriz de permisos en specs/002-usuarios-acceso/contracts/api.md.
 
 ## Fase 2 — Fundaciones
 
@@ -35,26 +35,26 @@ Objetivo y prueba independiente: dado una sesión válida, edito mi perfil; solo
 
 Objetivo y prueba independiente: dado un administrador autorizado, desactiva una cuenta; el acceso se revoca según política de sesión y se audita la acción.
 
-- [ ] T014 [US3] Implementar el caso «Administrar usuarios» con autorización/transiciones en backend/src/modules/usuarios/aplicacion/; cumplir los FR aplicables de spec.md.
-- [ ] T015 [US3] Exponer DTO y controlador del caso «Administrar usuarios» en backend/src/modules/usuarios/presentacion/ según contracts/api.md.
-- [ ] T016 [US3] Integrar el recorrido «Administrar usuarios» y sus estados negativos en frontend/src/components/usuarios/ y frontend/src/app/.
-- [ ] T017 [US3] Verificar el caso positivo y el rechazo no autorizado de «Administrar usuarios» en backend/test/usuarios/ y frontend/tests/usuarios/; registrar resultado en quickstart.md.
+- [x] T014 [US3] Implementar el caso «Administrar usuarios» con autorización/transiciones en backend/src/modules/usuarios/aplicacion/; cumplir los FR aplicables de spec.md.
+- [x] T015 [US3] Exponer DTO y controlador del caso «Administrar usuarios» en backend/src/modules/usuarios/presentacion/ según contracts/api.md.
+- [x] T016 [US3] Integrar el recorrido «Administrar usuarios» y sus estados negativos en frontend/src/components/usuarios/ y frontend/src/app/.
+- [x] T017 [US3] Verificar el caso positivo y el rechazo no autorizado de «Administrar usuarios» en backend/test/usuarios/ y frontend/tests/usuarios/; registrar resultado en quickstart.md.
 
 ## Trabajo de integración específico
 
 - [x] T018 Definir matriz de permisos y decisión D01 de sesión; archivos previstos en backend/src/modules/usuarios/ o frontend/src/components/usuarios/ según plan.md.
 - [x] T019 Implementar entidades Usuario/Roles y migraciones de unicidad; archivos previstos en backend/src/modules/usuarios/ o frontend/src/components/usuarios/ según plan.md.
 - [x] T020 Implementar registro/login y hash mediante adapter; archivos previstos en backend/src/modules/usuarios/ o frontend/src/components/usuarios/ según plan.md.
-- [ ] T021 Implementar guardas, IdentidadUsuarios y casos de perfil/admin; archivos previstos en backend/src/modules/usuarios/ o frontend/src/components/usuarios/ según plan.md.
+- [x] T021 Implementar guardas, IdentidadUsuarios y casos de perfil/admin; archivos previstos en backend/src/modules/usuarios/ o frontend/src/components/usuarios/ según plan.md.
 - [x] T022 Integrar pantallas de acceso/perfil y estados de error; archivos previstos en backend/src/modules/usuarios/ o frontend/src/components/usuarios/ según plan.md.
-- [ ] T023 Verificar autorización, concurrencia de registro e invalidez de sesión; archivos previstos en backend/src/modules/usuarios/ o frontend/src/components/usuarios/ según plan.md.
+- [x] T023 Verificar autorización, concurrencia de registro e invalidez de sesión; archivos previstos en backend/src/modules/usuarios/ o frontend/src/components/usuarios/ según plan.md.
 
 ## Cierre y verificación crítica
 
 - [x] T024 Email duplicado normalizado y dos registros concurrentes: una sola cuenta. Registrar evidencia en specs/002-usuarios-acceso/quickstart.md.
-- [ ] T025 Matriz cliente/proveedor/admin/anónimo: acciones ajenas rechazadas, incluso con IDs manipulados. Registrar evidencia en specs/002-usuarios-acceso/quickstart.md.
+- [x] T025 Matriz cliente/proveedor/admin/anónimo: acciones ajenas rechazadas, incluso con IDs manipulados. Registrar evidencia en specs/002-usuarios-acceso/quickstart.md.
 - [x] T026 Contraseña incorrecta, cuenta inactiva y límite de intentos; sin credenciales en logs. Registrar evidencia en specs/002-usuarios-acceso/quickstart.md.
-- [ ] T027 Analizar consistencia e imports y registrar resultados/limitaciones en specs/002-usuarios-acceso/checklists/requirements.md.
+- [x] T027 Analizar consistencia e imports y registrar resultados/limitaciones en specs/002-usuarios-acceso/checklists/requirements.md.
 
 ## Dependencias y estrategia
 

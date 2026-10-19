@@ -7,7 +7,7 @@ GitHub Spec Kit **1.2.0** integrado con plantillas/scripts PowerShell y skills p
 | N.º | Especificación | Módulo | Requisitos | Estado |
 |---|---|---|---|---|
 | 001 | [Descubrimiento de ofertas](./001-descubrimiento-ofertas/spec.md) | Recorrido web transversal | RF01/RF02; presentación RF11/RF13 | Prototipo validado; integración pendiente |
-| 002 | [Usuarios y acceso](./002-usuarios-acceso/spec.md) | usuarios | RF12, RF14 | US1/US2 implementadas localmente; US3 pendiente |
+| 002 | [Usuarios y acceso](./002-usuarios-acceso/spec.md) | usuarios | RF12, RF14 | US1/US2/US3 implementadas y verificadas localmente; aceptación global pendiente |
 | 003 | [Proveedores y verificación](./003-proveedores-verificacion/spec.md) | proveedores | RF13 | Borrador con decisiones abiertas |
 | 004 | [Catálogo y publicaciones](./004-catalogo-publicaciones/spec.md) | catalogo | RF01, RF02, RF03, RF15 | Borrador con decisiones abiertas |
 | 005 | [Reservas, contratación y pagos](./005-reservas-contratacion-pagos/spec.md) | reservas | RF04, RF05, RF06, RF07, RF08, RF09, RF10, RF18, RF21, RF22, RF23 | Borrador con decisiones abiertas |

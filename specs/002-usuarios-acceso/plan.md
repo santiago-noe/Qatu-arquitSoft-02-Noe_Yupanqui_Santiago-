@@ -1,6 +1,6 @@
 # Plan técnico — Usuarios y acceso
 
-**Estado:** US1/US2 implementadas localmente con NestJS 11, pg y PostgreSQL. US3 pendiente; resultados y versiones exactas en quickstart/package-lock.json.
+**Estado:** US1/US2/US3 implementadas localmente con NestJS 11, pg y PostgreSQL; resultados en quickstart.md y versiones exactas en backend/package-lock.json. Aceptación global de calidad pendiente.
 
 ## Technical Context
 
@@ -11,11 +11,11 @@ API NestJS/TypeScript, PostgreSQL/PostGIS y web Next.js/TypeScript; versiones so
 - [x] El plan conserva el módulo usuarios, los puertos y la propiedad de datos descritos en docs.
 - [x] Las dependencias externas se ubican en infraestructura.
 - [x] Las decisiones pendientes y las pruebas de aceptación están registradas.
-- [ ] Verificar estas condiciones en el código antes de cerrar la entrega.
+- [x] Verificar estas condiciones en el código para US1/US2/US3; evidencia en quickstart y checklist.
 
 ## Project Structure
 
-Código previsto en backend/src/modules/usuarios/{dominio,aplicacion,infraestructura,presentacion}; composición en usuarios.module.ts y fachada en index.ts. Pantallas en frontend/src/app y componentes en frontend/src/components/usuarios. Migraciones propias bajo backend/migrations/usuarios; pruebas unitarias junto al dominio e integración bajo backend/test/usuarios. Rutas previstas, todavía inexistentes.
+Código en backend/src/modules/usuarios/{dominio,aplicacion,infraestructura,presentacion}; composición en usuarios.module.ts y fachada en index.ts. Pantallas en frontend/src/app y componentes en frontend/src/components/usuarios, incluida /admin/usuarios. Migraciones 001/002 bajo backend/migrations/usuarios; pruebas de validación/hash/HTTP/integración en backend/test/usuarios y navegador en frontend/tests/usuarios. Aprovisionamiento sin HTTP en backend/scripts/aprovisionar-admin.ts.
 
 Dominio puro; aplicación consume puertos; infraestructura implementa repositorios/SDK; controladores traducen HTTP a casos de uso. El módulo no importa repositories ajenos ni consulta sus tablas directamente.
 
