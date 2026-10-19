@@ -1,28 +1,14 @@
 # Nivel 1 - Contexto del sistema Qatu
 
+Diagramas de diseño propuesto generados con Archify. Las imágenes PNG se pueden ampliar; los enlaces incluyen el visor HTML y la fuente JSON editable.
+
 ## Objetivo y alcance
 
 Mostrar Qatu como un sistema: personas y servicios externos. MVP: alquiler de herramientas y contratación de oficios en Ayacucho, con pago mediante pasarela y búsqueda en lenguaje natural. Compraventa y custodia propia de garantías quedan fuera del MVP.
 
-```mermaid
-flowchart LR
-    CL["Persona: Cliente o visitante<br/>Busca herramientas y oficios"]
-    PR["Persona: Proveedor<br/>Publica y atiende solicitudes"]
-    AD["Persona: Administrador<br/>Verifica y modera"]
-    Q["Sistema: Qatu<br/>Descubrimiento, reservas, pagos y confianza"]
-    PAY["Sistema externo: Culqi<br/>Procesa pagos; Yape como medio habilitado"]
-    IA["Sistema externo: Proveedor de IA<br/>Interpreta intención de búsqueda"]
-    MSG["Sistema externo: Mensajería<br/>Entrega avisos"]
-    MAP["Sistema externo: Mapas<br/>Ubicaciones y cercanía"]
-    CL -->|Busca, solicita, paga y reseña| Q
-    PR -->|Publica, acepta, entrega y recibe devoluciones| Q
-    AD -->|Gestiona usuarios, publicaciones e incidencias| Q
-    Q -->|Solicita y consulta pagos| PAY
-    PAY -->|Notifica resultados para verificación| Q
-    Q -->|Solicita interpretación de texto limitado| IA
-    Q -->|Envía avisos| MSG
-    Q -->|Consulta información geográfica| MAP
-```
+![Qatu · Nivel 1 · Contexto del sistema](./diagramas/png/nivel1-contexto.png)
+
+[Abrir PNG](./diagramas/png/nivel1-contexto.png) · [Visor Archify](./diagramas/html/nivel1-contexto.html) · [Fuente editable](./diagramas/fuentes/nivel1-contexto.archify.json)
 
 ## Personas
 

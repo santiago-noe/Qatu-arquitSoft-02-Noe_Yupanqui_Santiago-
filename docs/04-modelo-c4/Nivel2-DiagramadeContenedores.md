@@ -1,36 +1,14 @@
 # Nivel 2 - Contenedores de Qatu
 
+Diagramas de diseño propuesto generados con Archify. Las imágenes PNG se pueden ampliar; los enlaces incluyen el visor HTML y la fuente JSON editable.
+
 ## Objetivo
 
 Abrir Qatu en aplicaciones y almacenes independientes. Contenedor C4 no significa necesariamente contenedor Docker. El navegador ejecuta la interfaz y Next.js sirve/renderiza páginas; la API NestJS conserva la autoridad del negocio.
 
-```mermaid
-flowchart LR
-    U["Personas: Cliente, Proveedor y Administrador"]
-    subgraph Q["Sistema Qatu"]
-        W["Aplicación web<br/>Next.js, React, TypeScript<br/>Interfaz móvil y renderizado"]
-        A["API Qatu<br/>NestJS, TypeScript<br/>Monolito de seis módulos"]
-        DB[("Almacén relacional<br/>PostgreSQL y PostGIS<br/>Datos del negocio y outbox")]
-        F[("Almacén de archivos<br/>Volumen persistente privado<br/>Fotos y evidencias")]
-        R[("Caché opcional<br/>Redis<br/>Copias de consultas públicas")]
-    end
-    PAY["Externo: Culqi"]
-    IA["Externo: proveedor IA"]
-    MSG["Externo: mensajería"]
-    MAP["Externo: mapas"]
-    U -->|HTTPS: páginas e interacción| W
-    U -->|HTTPS/JSON desde navegador| A
-    W -->|HTTP/JSON en red privada: renderizado| A
-    A -->|SQL/TCP: repositorios y transacciones| DB
-    A -->|I/O privado: subir y leer| F
-    A -.->|TCP: solo si se activa| R
-    A -->|HTTPS: cobro y consulta| PAY
-    PAY -->|HTTPS: notificación verificable| A
-    A -->|HTTPS: interpretar texto| IA
-    A -->|HTTPS: avisos| MSG
-    A -->|HTTPS: geografía| MAP
-    U -.->|HTTPS: tokenización en checkout| PAY
-```
+![Qatu · Nivel 2 · Contenedores](./diagramas/png/nivel2-contenedores.png)
+
+[Abrir PNG](./diagramas/png/nivel2-contenedores.png) · [Visor Archify](./diagramas/html/nivel2-contenedores.html) · [Fuente editable](./diagramas/fuentes/nivel2-contenedores.archify.json)
 
 ## Responsabilidades y datos
 

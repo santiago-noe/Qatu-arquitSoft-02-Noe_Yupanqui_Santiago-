@@ -1,60 +1,28 @@
 # Nivel 3 - Componentes de la API Qatu
 
-## Vista gráfica
-
-![Diagrama de componentes de Qatu](../02-arquitectura-software/diagramas/png/componentes-qatu.png)
-
-[Editar en diagrams.net](../02-arquitectura-software/diagramas/fuentes/componentes-qatu.drawio) · [Descripción de componentes](../02-arquitectura-software/componentes-arquitectonicos.md).
+Diagramas de diseño propuesto generados con Archify. Las imágenes PNG se pueden ampliar; los enlaces incluyen el visor HTML y la fuente JSON editable.
 
 ## Objetivo
 
 Detallar exclusivamente el contenedor API del nivel 2. Los seis módulos se ejecutan juntos; componentes técnicos transversales no se cuentan como módulos de negocio adicionales.
 
-```mermaid
-flowchart TB
-    W["Contenedor externo a esta vista: Web Next.js"]
-    subgraph API["Contenedor: API Qatu - NestJS"]
-        H["Entrada HTTP<br/>Controladores, guards y validación"]
-        U["Usuarios y acceso<br/>Identidad y permisos"]
-        P["Proveedores<br/>Perfiles y verificación"]
-        C["Catálogo<br/>Publicaciones y cotización"]
-        R["Reservas y contratación<br/>Calendario, estados y componente de pagos"]
-        E["Reputación y confianza<br/>Reseñas, garantías documentales e incidencias"]
-        B["Búsqueda inteligente<br/>Intención validada y consulta"]
-        O["Publicador outbox<br/>Avisos durables y reintentos"]
-        I["Adaptadores de infraestructura<br/>Repositorios, Culqi, IA, mapas y archivos"]
-    end
-    DB[("Contenedor: PostgreSQL")]
-    F[("Almacén de archivos")]
-    PAY["Sistema externo: Culqi"]
-    IA["Sistema externo: IA"]
-    MSG["Sistema externo: mensajería"]
-    MAP["Sistema externo: mapas"]
-    W -->|HTTP/JSON| H
-    H --> U
-    H --> P
-    H --> C
-    H --> R
-    H --> E
-    H --> B
-    P -->|IdentidadUsuarios| U
-    C -->|ConsultaProveedores| P
-    R -->|ConsultaCatalogo| C
-    R -->|IdentidadUsuarios| U
-    E -->|ConsultaReservaFinalizada| R
-    E -->|IdentidadUsuarios| U
-    B -->|ConsultaCatalogo| C
-    B -->|ConsultaDisponibilidad| R
-    U & P & C & R & E & B -->|Puertos implementados| I
-    I -->|SQL: tablas propias| DB
-    I -->|Pagos HTTPS| PAY
-    I -->|Intención HTTPS| IA
-    I -->|Geografía HTTPS| MAP
-    I -->|I/O autorizado| F
-    R -.->|Evento guardado en transacción| O
-    O -->|Lee pendientes y marca entregas| DB
-    O -->|HTTPS: avisos| MSG
-```
+## Entrada de solicitudes
+
+![Qatu · Entrada de solicitudes](./diagramas/png/nivel3-entrada-http.png)
+
+[Abrir PNG](./diagramas/png/nivel3-entrada-http.png) · [Visor Archify](./diagramas/html/nivel3-entrada-http.html) · [Fuente editable](./diagramas/fuentes/nivel3-entrada-http.archify.json)
+
+## Contratos entre módulos
+
+![Qatu · Contratos entre módulos](./diagramas/png/nivel3-componentes.png)
+
+[Abrir PNG](./diagramas/png/nivel3-componentes.png) · [Visor Archify](./diagramas/html/nivel3-componentes.html) · [Fuente editable](./diagramas/fuentes/nivel3-componentes.archify.json)
+
+## Puertos, adaptadores y outbox
+
+![Qatu · Puertos, adaptadores y outbox](./diagramas/png/nivel3-infraestructura.png)
+
+[Abrir PNG](./diagramas/png/nivel3-infraestructura.png) · [Visor Archify](./diagramas/html/nivel3-infraestructura.html) · [Fuente editable](./diagramas/fuentes/nivel3-infraestructura.archify.json)
 
 ## Componentes, interfaces y propiedad
 

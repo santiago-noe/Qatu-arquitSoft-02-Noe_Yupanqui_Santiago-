@@ -1,40 +1,14 @@
 # Despliegue inicial de Qatu en VPS
 
+Diagramas de diseño propuesto generados con Archify. Las imágenes PNG se pueden ampliar; los enlaces incluyen el visor HTML y la fuente JSON editable.
+
 ## Alcance
 
 Vista de despliegue complementaria a C4. Un VPS Linux con Docker Compose; seis módulos en una API NestJS, web Next.js y PostgreSQL. Redis opcional. Configuración operativa propuesta; no es un despliegue realizado.
 
-```mermaid
-flowchart TB
-    U[Cliente: navegador móvil o PC]
-    subgraph VPS[Un VPS Linux]
-        PX[Proxy HTTPS: Nginx o Caddy]
-        WEB[Servicio web: Next.js]
-        API[Servicio API: NestJS]
-        DB[(PostgreSQL y PostGIS)]
-        F[(Volumen persistente de archivos)]
-        CACHE[(Redis opcional)]
-        PX -->|HTTP privado| WEB
-        PX -->|HTTP privado /api/v1| API
-        WEB -->|HTTP privado para SSR| API
-        API -->|SQL privado| DB
-        API -->|I/O| F
-        API -.-> CACHE
-    end
-    U -->|HTTPS 443| PX
-    PAY[Culqi]
-    IA[Proveedor IA]
-    MSG[Mensajería]
-    MAP[Mapas]
-    BACK[(Copias cifradas fuera del VPS)]
-    API -->|HTTPS saliente| PAY
-    PAY -->|HTTPS webhook| PX
-    API -->|HTTPS saliente| IA
-    API -->|HTTPS saliente| MSG
-    API -->|HTTPS saliente| MAP
-    DB -.->|Backup diario| BACK
-    F -.->|Backup diario| BACK
-```
+![Qatu · Despliegue propuesto · VPS](./diagramas/png/despliegue-vps.png)
+
+[Abrir PNG](./diagramas/png/despliegue-vps.png) · [Visor Archify](./diagramas/html/despliegue-vps.html) · [Fuente editable](./diagramas/fuentes/despliegue-vps.archify.json)
 
 ## Operación y límites
 
