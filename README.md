@@ -8,7 +8,7 @@ MVP web para publicar, buscar, solicitar, pagar y completar alquileres de herram
 
 Web Next.js/React/TypeScript; API NestJS/TypeScript como monolito modular; PostgreSQL/PostGIS; pasarela Culqi candidata con Yape como medio habilitado; despliegue inicial VPS con Docker Compose.
 
-Estado: prototipo web 001 implementado localmente con datos sintéticos. Backend, persistencia e integraciones reales pendientes. Las metas de calidad son objetivos por verificar, no resultados demostrados.
+Estado (2026-10-19): prototipo web 001 con catálogo sintético y Usuarios 002 US1/US2 implementadas con API NestJS y persistencia PostgreSQL. Registro, login, perfil y logout disponibles localmente. Administración US3 e integraciones de catálogo/reservas/pagos pendientes. Las metas de calidad completas siguen por verificar; evidencia del incremento en specs/002-usuarios-acceso/quickstart.md.
 
 ## Documentación
 
@@ -28,7 +28,9 @@ Qatu/
 │   └── 04-modelo-c4/
 │       └── diagramas/
 ├── specs/          Especificaciones SDD de trabajo local
-└── frontend/       Prototipo web de trabajo local
+├── frontend/       Web de descubrimiento y cuentas
+├── backend/        API NestJS, módulo usuarios y migraciones
+└── compose.yaml    PostgreSQL/PostGIS para desarrollo local
 ```
 
 ## Analisis del sistema
@@ -100,9 +102,9 @@ Los archivos de historico son versiones anteriores; pueden mostrar cinco módulo
 | 4 | ¿Cómo colaboran las clases y puertos? | [Código](./docs/04-modelo-c4/Nivel4-DiagramadeCodigo.md) |
 | Complementaria | ¿Dónde se ejecuta? | [Despliegue VPS](./docs/04-modelo-c4/despliegue-vps.md) |
 
-Mermaid representa las vistas estructurales y UML el diseño de código. Secuencias y despliegue son vistas complementarias. Los contenedores C4 son unidades de ejecución/almacenamiento, no necesariamente contenedores Docker. Los componentes de la API comparten proceso.
+Archify genera las vistas estructurales y UML en PNG, con visor HTML y fuentes JSON editables. Secuencias y despliegue son vistas complementarias. Los contenedores C4 son unidades de ejecución/almacenamiento, no necesariamente contenedores Docker. Los componentes de la API comparten proceso.
 
-Las fuentes editables .mmd están en docs/04-modelo-c4/diagramas y corresponden a los bloques Mermaid de los documentos. Editar el Markdown y sincronizar su archivo .mmd. Referencia: [C4](https://c4model.com/diagrams).
+Los documentos muestran PNG de alta resolución desde [diagramas/png](./docs/04-modelo-c4/diagramas/png). Editar las fuentes en [diagramas/fuentes](./docs/04-modelo-c4/diagramas/fuentes), regenerar con Archify y descargar el PNG desde su visor HTML. Los archivos .mmd previos se conservan como referencia histórica. Referencia: [C4](https://c4model.com/diagrams).
 
 ## Desarrollo local
 
@@ -116,4 +118,4 @@ npm ci
 npm run dev
 ```
 
-Abrir http://127.0.0.1:3000. El prototipo permite explorar datos sintéticos; las integraciones y la aceptación completa siguen pendientes.
+Abrir http://127.0.0.1:3000. El catálogo conserva datos sintéticos. Para habilitar /registro, /ingresar y /cuenta, preparar PostgreSQL, configurar backend/.env, ejecutar npm run migrate y npm run dev desde backend siguiendo [las instrucciones de la API](./backend/README.md). La web reenvía /api/v1 al backend local en el puerto 3001. No hay secretos de desarrollo preconfigurados.
