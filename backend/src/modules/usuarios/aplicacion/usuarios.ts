@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { emailValido, entrada, ErrorUsuario, nombreValido, passwordValido, type Usuario } from '../dominio/usuario';
+import { emailValido, entrada, ErrorUsuario, estadoValido, idValido, motivoValido, nombreValido, paginaValida, passwordValido, type Usuario } from '../dominio/usuario';
 import type { HashPasswords, RepositorioUsuarios, TokensSesion } from '../dominio/puertos';
 
 export class Usuarios {
@@ -67,5 +67,37 @@ export class Usuarios {
 
   limitar(clave: string, maximo: number) {
     return this.repo.limitar(clave, maximo);
+  }
+
+  private async administrador(token: string) {
+    const { usuario } = await this.identidad(token);
+    if (!usuario.roles.includes('admin')) throw new ErrorUsuario('SIN_PERMISO', 403, 'Esta acción requiere una cuenta administrativa.');
+    return usuario;
+  }
+
+  async listarUsuarios(token: string, value: unknown) {
+    await this.administrador(token);
+    const datos = entrada(value, ['pagina', 'q', 'estado']);
+    if (datos.q !== undefined && (typeof datos.q !== 'string' || datos.q.trim().length > 100)) throw new ErrorUsuario('ENTRADA_INVALIDA', 400, 'La búsqueda admite hasta 100 caracteres.');
+    return this.repo.listar({ pagina: paginaValida(datos.pagina), q: typeof datos.q === 'string' ? datos.q.trim() : '', estado: datos.estado === undefined ? undefined : estadoValido(datos.estado) });
+  }
+
+  async consultarAuditoria(token: string, usuarioId: string, value: unknown) {
+    await this.administrador(token);
+    const datos = entrada(value, ['pagina']);
+    idValido(usuarioId);
+    if (!await this.repo.porId(usuarioId)) throw new ErrorUsuario('USUARIO_NO_EXISTE', 404, 'La cuenta no existe.');
+    return this.repo.auditoria(usuarioId, paginaValida(datos.pagina));
+  }
+
+  async cambiarEstado(token: string, usuarioId: string, value: unknown) {
+    const actor = await this.administrador(token);
+    const datos = entrada(value, ['estadoActual', 'estado', 'motivo']);
+    idValido(usuarioId);
+    const estadoActual = estadoValido(datos.estadoActual);
+    const estado = estadoValido(datos.estado);
+    const motivo = motivoValido(datos.motivo);
+    if (estadoActual === estado) throw new ErrorUsuario('ENTRADA_INVALIDA', 400, 'Selecciona un estado diferente al actual.');
+    return this.repo.cambiarEstado(actor.id, usuarioId, estadoActual, estado, motivo);
   }
 }

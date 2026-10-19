@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, Inject, Patch, Post, Req, Res } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Inject, Param, Patch, Post, Query, Req, Res } from '@nestjs/common';
 import type { Request, Response } from 'express';
 import { createHash } from 'node:crypto';
 import { Usuarios } from '../aplicacion/usuarios';
@@ -60,5 +60,20 @@ export class UsuariosController {
       if (!(error instanceof ErrorUsuario) || error.status !== 401) throw error;
     }
     response.clearCookie(cookie, opcionesCookie());
+  }
+
+  @Get('admin/usuarios')
+  listar(@Req() request: Request, @Query() query: unknown) {
+    return this.usuarios.listarUsuarios(token(request), query);
+  }
+
+  @Get('admin/usuarios/:id/auditoria')
+  auditoria(@Req() request: Request, @Param('id') id: string, @Query() query: unknown) {
+    return this.usuarios.consultarAuditoria(token(request), id, query);
+  }
+
+  @Patch('admin/usuarios/:id/estado')
+  cambiarEstado(@Req() request: Request, @Param('id') id: string, @Body() body: unknown) {
+    return this.usuarios.cambiarEstado(token(request), id, body);
   }
 }

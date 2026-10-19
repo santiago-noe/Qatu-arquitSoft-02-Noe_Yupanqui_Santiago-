@@ -1,6 +1,6 @@
 # API Qatu — Usuarios
 
-NestJS 11/TypeScript, PostgreSQL y puertos por módulo. Este incremento implementa registro, login, perfil propio y logout (US1/US2, RF12/RF14). Administración auditada US3 sigue pendiente. El catálogo del frontend conserva fixtures.
+NestJS 11/TypeScript, PostgreSQL y puertos por módulo. Implementa registro, login, perfil propio, logout y administración auditada (US1/US2/US3, RF12/RF14). El catálogo del frontend conserva fixtures.
 
 ## Desarrollo local
 
@@ -38,8 +38,35 @@ npm test
 
 Los ensayos generan cuentas sintéticas; no usar una base personal/producción. Desde frontend, `npm run build` y `npm run test:usuarios` verifican el recorrido con navegador/API/base reales. Para ese ensayo el backend utiliza su .env, APP_ORIGIN se fija en 127.0.0.1:3100; la API y los puertos 3001/3100 deben estar libres. `npm test` conserva la regresión de descubrimiento sin requerir backend.
 
-## Límites del incremento
+## Crear un administrador
 
-No hay renovación ni recuperación de contraseña; las sesiones expiran a los 15 minutos. Logout revoca en servidor. No hay asignación pública de roles ni endpoint de administración. Las cuotas por IP detrás del proxy se comparten; revisar proxy y cuotas antes de publicar. HTTPS, limpieza programada de sesiones/cuotas expiradas, OpenAPI estructurado y aceptación completa de EQ-04/EQ-05 siguen pendientes. Las credenciales de Compose son exclusivamente locales.
+Aplicar `npm run migrate` también en bases que ya tienen Usuarios 001: la migración 002 añade auditoría sin recrear cuentas. Desde backend, con DATABASE_URL configurada y acceso de operador, crear una cuenta nueva con correo exclusivo. Si el correo ya existe, el comando se rechaza; no eleva permisos de una cuenta pública.
+
+```powershell
+$env:QATU_ADMIN_EMAIL = Read-Host 'Correo del nuevo administrador'
+$env:QATU_ADMIN_NOMBRE = Read-Host 'Nombre'
+$env:QATU_ADMIN_MOTIVO = Read-Host 'Motivo del aprovisionamiento (10–500 caracteres)'
+$claveAdmin = Read-Host 'Contraseña (12–128 caracteres)' -AsSecureString
+try {
+  $env:QATU_ADMIN_PASSWORD = [System.Net.NetworkCredential]::new('', $claveAdmin).Password
+  npm run admin:crear
+} finally {
+  Remove-Item Env:QATU_ADMIN_PASSWORD -ErrorAction SilentlyContinue
+  Remove-Item Env:QATU_ADMIN_EMAIL -ErrorAction SilentlyContinue
+  Remove-Item Env:QATU_ADMIN_NOMBRE -ErrorAction SilentlyContinue
+  Remove-Item Env:QATU_ADMIN_MOTIVO -ErrorAction SilentlyContinue
+  $claveAdmin.Dispose()
+}
+```
+
+No guardar estas variables QATU_ADMIN_* en .env ni en comandos con contraseñas literales. El script devuelve solo el UUID creado y guarda la creación en auditoría. No proporciona una contraseña por defecto ni promueve cuentas existentes.
+
+Ingresar desde /ingresar; el perfil administrativo muestra «Administrar usuarios». En /admin/usuarios se filtra por nombre/correo/estado, se revisa auditoría paginada y se confirma el cambio con motivo. Las cuentas admin están protegidas contra cambios HTTP. La gestión/retiro de sus permisos requiere una operación controlada fuera de esta pantalla.
+
+Desactivar revoca todas las sesiones; reactivar requiere login nuevo. Una cuenta cuyo estado cambió desde que se mostró devuelve 409; actualizar listado antes de repetir. Cambios de estado, revocación y auditoría se confirman juntos o se revierten juntos. Esto no define qué hacer con publicaciones/reservas futuras de proveedores (D02 pendiente).
+
+## Límites operativos
+
+No hay renovación ni recuperación de contraseña; las sesiones expiran a los 15 minutos. Logout revoca en servidor. No hay asignación pública de roles ni eliminación HTTP de auditoría. Las cuotas por IP detrás del proxy se comparten; revisar proxy y cuotas antes de publicar. HTTPS, limpieza programada de sesiones/cuotas expiradas, OpenAPI estructurado y aceptación global de EQ-04/EQ-05 siguen pendientes. Las credenciales de Compose son exclusivamente locales. La auditoría no sustituye copias de seguridad ni protección del acceso directo a PostgreSQL.
 
 Referencias de implementación: [NestJS](https://docs.nestjs.com/security/authentication), [scrypt de Node.js](https://nodejs.org/api/crypto.html#cryptoscryptpassword-salt-keylen-options-callback). Política concreta en specs/002-usuarios-acceso/research.md.

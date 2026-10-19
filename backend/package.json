@@ -8,7 +8,8 @@
     "build": "tsc -p tsconfig.json",
     "start": "node --env-file-if-exists=.env dist/main.js",
     "migrate": "node --env-file-if-exists=.env --import tsx scripts/migrate.ts",
-    "test": "node --env-file-if-exists=.env --import tsx --test test/usuarios/*.test.ts"
+    "admin:crear": "node --env-file-if-exists=.env --import tsx scripts/aprovisionar-admin.ts",
+    "test": "node --env-file-if-exists=.env --import tsx --test --test-concurrency=1 test/usuarios/*.test.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.0",
