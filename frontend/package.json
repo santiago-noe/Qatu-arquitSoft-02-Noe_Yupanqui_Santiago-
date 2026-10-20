@@ -11,7 +11,8 @@
     "start": "next start --hostname 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "test": "playwright test --project=descubrimiento",
-    "test:usuarios": "playwright test --config playwright.usuarios.config.ts"
+    "test:usuarios": "playwright test --config playwright.usuarios.config.ts",
+    "test:proveedores": "playwright test --config playwright.proveedores.config.ts"
   },
   "dependencies": {
     "next": "16.4.1",

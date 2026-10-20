@@ -1,6 +1,8 @@
-# Qatu Web — descubrimiento y cuentas
+# Qatu Web — descubrimiento, cuentas y proveedores
 
 Implementación local de la especificación 001 y Usuarios 002 US1/US2/US3 con Next.js, React y TypeScript. Rutas: inicio (/), resultados (/buscar), detalle (/publicaciones/:id), guía de estados (/demo), registro (/registro), ingreso (/ingresar), perfil (/cuenta) y administración (/admin/usuarios).
+
+Proveedores 003 incorpora /proveedor para alta/edición/solicitud documental propia, /proveedores/:id como página pública de visibilidad explícita y /admin/proveedores para revisar documentación. Crear perfil no lo aprueba; el estado público proviene de revisión real del administrador, con archivos privados y motivo auditado. El catálogo no está integrado aún con esos perfiles.
 
 ## Ejecutar
 
@@ -39,6 +41,8 @@ La búsqueda convencional combina texto por términos sin tildes con tipo/catego
 Registro/login, edición del nombre propio y logout operan con sesión HttpOnly y revocación en servidor. Administración exige admin activo; permite buscar/paginar cuentas, activar/desactivar con motivo y consultar auditoría. Crear admin por CLI según backend/README.md; el perfil administrativo enlaza /admin/usuarios. Desactivar revoca sesiones y reactivar exige login nuevo. No hay IA, publicación, reservas, pago ni mapa real; esas acciones futuras abren un aviso. Error/reintento, vacío, publicación desactivada e imagen ausente se pueden explorar desde /demo. El error de consulta simulado usa escenario=error; el reintento elimina solo ese parámetro, conservando los filtros.
 
 `npm run test:usuarios` inicia API en 3001 y web en 3100, requiere base exclusiva de pruebas ya migrada y DATABASE_URL/JWT_SECRET (entorno o backend/.env). Ejecuta el recorrido con Chrome y persistencia real. `npm test` mantiene las 13 pruebas de descubrimiento sin backend; no ejecutar simultáneamente ambas suites en el puerto 3001. Resultados de este incremento en [quickstart 002](../specs/002-usuarios-acceso/quickstart.md).
+
+`npm run test:proveedores` reutiliza esos puertos y verifica perfiles, privacidad, ediciones concurrentes, carga y revisión con adjuntos sintéticos. Requiere DOCUMENTOS_KEY además de DATABASE_URL/JWT_SECRET y migraciones 001/002 de Proveedores. Ejecutar secuencialmente con las otras suites. El proxy admite 12 MiB para 2×5 MiB más multipart; consultas JSON tienen deadline de 10 s y cargas de 120 s. La clave se configura solo en backend, nunca en variables NEXT_PUBLIC_*.
 
 ## Archivos principales
 
