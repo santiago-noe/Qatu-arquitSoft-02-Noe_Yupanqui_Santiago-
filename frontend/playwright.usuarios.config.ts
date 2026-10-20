@@ -1,11 +1,12 @@
 import { defineConfig } from '@playwright/test';
+import { opcionesNavegador } from './playwright.navegador';
 
 export default defineConfig({
   testDir: './tests/usuarios', workers: 1, timeout: 45000,
   reporter: [['list']],
   use: {
     baseURL: 'http://127.0.0.1:3100',
-    launchOptions: { executablePath: process.env.QATU_BROWSER ?? 'C:/Program Files/Google/Chrome/Application/chrome.exe' },
+    launchOptions: opcionesNavegador(),
     screenshot: 'only-on-failure', trace: 'retain-on-failure',
   },
   webServer: [
