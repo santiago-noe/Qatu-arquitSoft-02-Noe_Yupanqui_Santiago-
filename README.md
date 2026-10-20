@@ -4,6 +4,8 @@ Proyecto final de Arquitectura de Software (IS-488), Noe Yupanqui Santiago. Entr
 
 ## Alcance
 
+La integración continua de GitHub Actions valida especificaciones, backend con PostgreSQL y frontend con navegador en pushes a todas las ramas y pull requests hacia `main`. Cada especificación se desarrolla en su propia rama; requiere CI verde en la rama secundaria y en el pull request antes del merge a `main`, conservando sus commits individuales. Flujo de trabajo y configuración de las reglas remotas necesarias: [guía de CI](.github/CI.md).
+
 MVP web para publicar, buscar, solicitar, pagar y completar alquileres de herramientas o servicios de oficios en Ayacucho. Incluye búsqueda en lenguaje natural, confianza y evidencias. Compraventa y otras categorías de la propuesta quedan como evolución futura.
 
 Web Next.js/React/TypeScript; API NestJS/TypeScript como monolito modular; PostgreSQL/PostGIS; pasarela Culqi candidata con Yape como medio habilitado; despliegue inicial VPS con Docker Compose.
