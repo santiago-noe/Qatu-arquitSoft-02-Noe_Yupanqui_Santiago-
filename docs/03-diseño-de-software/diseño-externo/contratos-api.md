@@ -24,6 +24,16 @@ Diseño REST /api/v1, JSON, fechas ISO 8601, instantes UTC y presentación Ameri
 | POST /reservas/:id/incidencias | Abrir incidencia | Participante; revisión humana |
 | POST /reservas/:id/resenas | Calificar | Cliente de reserva finalizada |
 
+## Proveedores implementados localmente (003)
+
+GET /proveedores/zonas y /proveedores/politica-documental son públicos. GET/POST/PATCH /proveedores/me usan identidad activa de Usuarios; alta {nombrePublico,descripcion,zonaId,visiblePublicamente}, edición añade versionActual. Un perfil por usuario; 409 por duplicado o edición desactualizada. GET /proveedores/:id proyecta solo nombre público, descripción, zona y verificación, y devuelve 404 si oculto/inactivo/inexistente.
+
+POST /proveedores/me/verificaciones recibe multipart con versionActual, aceptaConservacion=true y 1–2 documentos PDF/JPEG/PNG de hasta 5 MiB. Origin exacto también en multipart; verificación de sesión previa a archivos. Guardado cifrado junto a solicitud/snapshot, estado pendiente, sin autoaprobación. GET propio devuelve últimas 20 solicitudes. GET /proveedores/documentos/:id exige dueño/admin activo y dueño aún activo; descarga attachment, no-store, nosniff y CSP sandbox.
+
+GET /admin/proveedores/verificaciones pagina 20 con filtro estado. POST /admin/proveedores/:id/verificacion recibe {solicitudId,decision,motivo}; otro admin activo, decisión aprobada/rechazada y motivo 10–500. Estado y resolución auditada en transacción; 409 ya resuelta/concurrente. El cliente no modifica estados ni roles. Cambios de datos públicos tras resolución reinician verificación; durante revisión solo cambia visibilidad. D02/mapas externos e integración de Catálogo siguen pendientes. [Contrato completo y matriz](../../../specs/003-proveedores-verificacion/contracts/api.md).
+
+Conservación seleccionada por el usuario: archivos mientras proveedor activo, determinado hoy por cuenta activa de Usuarios. Limpieza inicial/horaria y CLI elimina adjuntos al detectar inactividad, conserva historial y reinicia verificación. Bytes cifrados con clave externa, sin nombres originales ni URLs públicas. Operación/copias/rotación de claves deben validarse en 008. [Decisión D03](../../../specs/003-proveedores-verificacion/research.md).
+
 ## Búsqueda con IA
 
 Entrada: texto máximo propuesto de 500 caracteres y filtros manuales opcionales. El servidor fija fecha de referencia y zona horaria. Salida: modo natural/convencional, criterios interpretados, campos que requieren precisión y resultados con IDs reales. Ejemplo: texto “taladro en Huamanga por menos de 40 soles al día” produce tipo herramienta, categoría resuelta, zona resuelta y máximo 4000 céntimos. No se inventan fechas; debe pedirlas antes de afirmar disponibilidad.

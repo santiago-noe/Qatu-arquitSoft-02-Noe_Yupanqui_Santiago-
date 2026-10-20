@@ -56,6 +56,8 @@ Las relaciones entre módulos son referencias lógicas, no permiso de lectura di
 
 ## Consistencia y seguridad
 
+Implementación Proveedores 003: zonas_proveedor y proveedores propios con unicidad por usuario, versión y visibilidad explícita; verificaciones_proveedor conserva consentimiento/snapshot/decisión/motivo/revisor/fecha; documentos_proveedor guarda metadatos y contenido cifrado, IV/tag, sin nombres originales. FK a Usuarios refuerzan integridad, pero la aplicación consulta identidad por fachada. Limpieza de inactivos conserva historial y elimina adjuntos. [Detalle físico y migraciones](../../specs/003-proveedores-verificacion/data-model.md).
+
 Implementación Usuarios US3 (2026-10-19): la migración backend/migrations/usuarios/002-administracion.sql añade auditoria_usuarios, propia de Usuarios, con actor/cuenta/acción/estado anterior y nuevo/motivo/fecha. Aprovisionamiento CLI registra actor null; cambios HTTP exigen actor admin activo. Estado, revocación y auditoría se confirman juntos. El modelo lógico de los demás módulos sigue siendo propuesto; ver [detalle físico de Usuarios](../../specs/002-usuarios-acceso/data-model.md).
 
 Snapshot de reserva conserva precio, unidad, cantidad, comisión, condiciones y total cobrable; garantía se muestra separada y se gestiona documentalmente en MVP. No guardar tarjetas, CVV, secretos de IA ni tokens de pago reutilizables. Auditar actor, acción, entidad, resultado y fecha con datos mínimos.

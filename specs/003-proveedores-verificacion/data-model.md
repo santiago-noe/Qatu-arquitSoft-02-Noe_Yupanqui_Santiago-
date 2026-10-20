@@ -1,6 +1,6 @@
 # Modelo de datos — Proveedores y verificación
 
-**Fuente:** [modelo lógico Qatu](../../docs/03-diseño-de-software/modelo-de-datos.md). Esta vista pertenece a proveedores; no es una migración aplicada.
+**Fuente:** [modelo lógico Qatu](../../docs/03-diseño-de-software/modelo-de-datos.md). Implementación física local en backend/migrations/proveedores; no implica despliegue operativo.
 
 ## Datos propios
 
@@ -31,4 +31,10 @@ Las claves externas lógicas no conceden permiso para usar repositories de otros
 
 ## Cambios pendientes de esquema
 
-Confirmar columnas y estados contra contratos antes de generar migraciones. Toda ampliación respecto al modelo lógico se registra como propuesta y se sincroniza; no se presenta como dato ya implementado.
+001-perfiles: zonas_proveedor(id,nombre) con cuatro distritos del catálogo inicial; proveedores(id,usuario_id UNIQUE FK a usuarios,nombre_publico,descripcion,zona_id FK propia,visible_publicamente,estado_verificacion,version,creado_en,actualizado_en). Visibilidad requiere boolean explícito del dueño; la versión impide sobrescritura concurrente. No se introduce estado de desactivación operativa hasta resolver D02.
+
+002-verificaciones: verificaciones_proveedor(id,proveedor_id,estado,politica_conservacion,perfil_enviado,motivo,revisor_id,creado_en,revisado_en), con índice único parcial de pendiente por proveedor e historial por fecha. Snapshot de nombre/descripción/zona y política cuenta_activa_v1; motivo/revisor/fecha obligatorios para decisiones. Cancelación de conservación usa revisor null y motivo automático.
+
+documentos_proveedor(id,verificacion_id,tipo,bytes,sha256,contenido,iv,tag,eliminado_en,creado_en): bytea cifrado AES-GCM, hasta 5 MiB por archivo; tipo limitado a PDF/JPEG/PNG, IV 12 y tag 16. Sin nombres originales ni rutas públicas. SHA-256 privado identifica el archivo del envío; nunca se devuelve al público. Clave externa en DOCUMENTOS_KEY. Eliminación conserva metadatos y marca eliminado_en, pone contenido/IV/tag en NULL y reinicia estado del perfil, sin borrar decisiones.
+
+FK a Usuarios refuerzan integridad, no autorizan lecturas de sus tablas desde Proveedores. Identidad/estado/roles se consumen por IdentidadUsuarios. Solicitud+adjuntos+perfil y resolución+perfil se confirman respectivamente en transacción. Las migraciones tienen rollback manual; 002 down elimina historial/archivos y reinicia verificación, nunca se ejecuta automáticamente.

@@ -1,6 +1,6 @@
 # 003 — Proveedores y verificación
 
-**Estado:** especificado; implementación y aceptación pendientes. **Fecha:** 2026-10-15.
+**Estado:** perfiles, revisión documental y consulta pública implementados localmente; verificación en quickstart. D02, mapas externos e integración de Catálogo pendientes. **Actualizado:** 2026-10-19.
 **Módulo técnico:** proveedores. **Historias:** HU12.
 
 ## Objetivo y alcance
@@ -71,7 +71,7 @@ Datos propios: proveedores; verificaciones. Identidad de actor derivada del serv
 ## Clarifications
 
 - D02: tratamiento de publicaciones y reservas existentes al desactivar un proveedor; pendiente antes de desactivación operativa.
-- D03: proveedor de mapas y límites de documentos (tipo/tamaño/retención) antes de integrar cargas.
+- D03 documental resuelta por el usuario: documentos reales, conservar mientras esté activo. PDF/JPEG/PNG privados cifrados, 1–2 archivos de 5 MiB y consentimiento; detalle en research.md. Mapas externos siguen pendientes, con distrito manual disponible.
 
 Estas decisiones bloquean únicamente las tareas afectadas. El resto del diseño y los contratos ya documentados pueden avanzar.
 

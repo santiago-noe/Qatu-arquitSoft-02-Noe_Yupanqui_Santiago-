@@ -8,7 +8,7 @@ MVP web para publicar, buscar, solicitar, pagar y completar alquileres de herram
 
 Web Next.js/React/TypeScript; API NestJS/TypeScript como monolito modular; PostgreSQL/PostGIS; pasarela Culqi candidata con Yape como medio habilitado; despliegue inicial VPS con Docker Compose.
 
-Estado (2026-10-19): prototipo web 001 con catálogo sintético y Usuarios 002 US1/US2/US3 implementadas con API NestJS y persistencia PostgreSQL. Registro, login, perfil, logout y administración auditada disponibles localmente. Administrador creado por CLI sobre cuenta nueva; /admin/usuarios permite buscar cuentas, cambiar acceso con motivo y revisar auditoría. Catálogo/reservas/pagos e integración de proveedores pendientes. Las metas de calidad globales siguen por verificar; evidencia en specs/002-usuarios-acceso/quickstart.md.
+Estado (2026-10-19): prototipo 001 con catálogo sintético, Usuarios 002 y flujos locales de Proveedores 003 implementados con API NestJS y PostgreSQL. Registro, sesión, perfil, administración de cuentas, perfiles de proveedor y revisión documental privada con historial. /proveedor y /admin/proveedores complementan /cuenta y /admin/usuarios. Conservación de archivos elegida por el usuario: mientras siga activo, con limpieza al iniciar y horaria. Catálogo/reservas/pagos, mapas externos y política operativa D02 pendientes. Las metas de calidad globales siguen por verificar; evidencia en specs/002-usuarios-acceso/quickstart.md y specs/003-proveedores-verificacion/quickstart.md.
 
 ## Documentación
 
@@ -119,3 +119,5 @@ npm run dev
 ```
 
 Abrir http://127.0.0.1:3000. El catálogo conserva datos sintéticos. Para habilitar /registro, /ingresar y /cuenta, preparar PostgreSQL, configurar backend/.env, ejecutar npm run migrate y npm run dev desde backend siguiendo [las instrucciones de la API](./backend/README.md). La web reenvía /api/v1 al backend local en el puerto 3001. No hay secretos de desarrollo preconfigurados.
+
+Proveedores: desde /cuenta crear el perfil con distrito manual, elegir su visibilidad y solicitar revisión documental. Un administrador diferente revisa en /admin/proveedores. Para habilitar documentos, configurar DOCUMENTOS_KEY estable y protegida según [la guía de Proveedores](./backend/PROVEEDORES.md); sin ella los perfiles funcionan pero no se admiten adjuntos. Los documentos no se incluyen en páginas públicas ni fixtures del catálogo.

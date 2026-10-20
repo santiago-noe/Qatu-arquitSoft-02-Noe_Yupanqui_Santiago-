@@ -1,6 +1,6 @@
 # Plan técnico — Proveedores y verificación
 
-**Estado:** plan documental; código, migraciones y pruebas aún no ejecutados.
+**Estado:** implementación local de perfiles, revisión documental y consulta pública con NestJS 11, pg/PostgreSQL y Next.js 16.4.1; resultados en quickstart.md. D02/mapas/Catálogo y aceptación global pendientes.
 
 ## Technical Context
 
@@ -15,7 +15,7 @@ API NestJS/TypeScript, PostgreSQL/PostGIS y web Next.js/TypeScript; versiones so
 
 ## Project Structure
 
-Código previsto en backend/src/modules/proveedores/{dominio,aplicacion,infraestructura,presentacion}; composición en proveedores.module.ts y fachada en index.ts. Pantallas en frontend/src/app y componentes en frontend/src/components/proveedores. Migraciones propias bajo backend/migrations/proveedores; pruebas unitarias junto al dominio e integración bajo backend/test/proveedores. Rutas previstas, todavía inexistentes.
+Código en backend/src/modules/proveedores/{dominio,aplicacion,infraestructura,presentacion}; composición en proveedores.module.ts y fachada en index.ts. Pantallas /proveedor, /proveedores/:id y /admin/proveedores con componentes en frontend/src/components/proveedores. Migraciones 001-perfiles/002-verificaciones; pruebas en backend/test/proveedores y frontend/tests/proveedores. Documentos por puerto con adapter cifrado PostgreSQL; limpieza inicial/horaria y CLI.
 
 Dominio puro; aplicación consume puertos; infraestructura implementa repositorios/SDK; controladores traducen HTTP a casos de uso. El módulo no importa repositories ajenos ni consulta sus tablas directamente.
 
@@ -45,6 +45,6 @@ Incluir unitarias para reglas y estados, integración PostgreSQL para restriccio
 ## Riesgos y bloqueos
 
 - D02: tratamiento de publicaciones y reservas existentes al desactivar un proveedor; pendiente antes de desactivación operativa.
-- D03: proveedor de mapas y límites de documentos (tipo/tamaño/retención) antes de integrar cargas.
+- D03 documental resuelta en research.md por elección del usuario; mapas externos pendientes. La selección manual no depende de un servicio de mapas.
 
 No activar tareas afectadas mientras falte la decisión. [Tareas](./tasks.md) · [Especificación](./spec.md).
