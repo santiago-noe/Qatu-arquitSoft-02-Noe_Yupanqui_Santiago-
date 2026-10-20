@@ -24,6 +24,10 @@ El servidor se limita a loopback para vista previa local. El despliegue VPS se p
 
 ## Verificar
 
+Acceso y registro usan un diseño adaptable de dos columnas, navegación entre formularios, opción de mostrar/ocultar contraseña y estados de envío/error. No cambian los contratos de autenticación ni añaden proveedores de acceso externos.
+
+Tras `npm run build`, ejecutar `$env:QATU_TEST_PORT='3200'; npm run test:acceso` para comprobar el diseño a 1440, 768 y 360 px, errores y redirección al perfil. Esta suite intercepta la API con datos sintéticos y no necesita PostgreSQL ni modifica cuentas reales. Genera capturas en `test-results/acceso-*.png`.
+
 ```powershell
 npm run typecheck
 npm run build
